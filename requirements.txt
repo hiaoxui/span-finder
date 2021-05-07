@@ -1,0 +1,11 @@
+allennlp>=2.0.0
+allennlp-models>=2.0.0
+transformers>=4.0.0 # Why is huggingface so unstable?
+numpy
+torch>=1.7.0,<1.8.0
+tqdm
+nltk
+overrides
+concrete
+flask
+scipy
