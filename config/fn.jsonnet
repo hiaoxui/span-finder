@@ -1,32 +1,30 @@
-local env = import "../env.jsonnet";
-
-local dataset_path = env.str("DATA_PATH", "data/framenet/full");
-local ontology_path = "data/framenet/ontology.tsv";
+local dataset_path = std.extVar("DATA_PATH");
+local ontology_path = std.extVar("ONTOLOGY_PATH");
 
 local debug = false;
 
 # reader
-local pretrained_model = env.str("ENCODER", "xlm-roberta-large");
-local smoothing_factor = env.json("SMOOTHING", "0.1");
+local pretrained_model = std.extVar("ENCODER");
+local smoothing_factor = 0.1;
 
 # model
-local label_dim = env.json("LABEL_DIM", "64");
-local dropout = env.json("DROPOUT", "0.2");
-local bio_dim = env.json("BIO_DIM", "512");
-local bio_layers = env.json("BIO_LAYER", "2");
-local span_typing_dims = env.json("TYPING_DIMS", "[256, 256]");
-local typing_loss_factor = env.json("LOSS_FACTOR", "8.0");
+local label_dim = 64;
+local dropout = 0.2;
+local bio_dim = 512;
+local bio_layers = 2;
+local span_typing_dims = [256, 256];
+local typing_loss_factor = 8.0;
 
 # loader
-local exemplar_ratio = env.json("EXEMPLAR_RATIO", "0.05");
+local exemplar_ratio = 0.05;
 local max_training_tokens = 512;
 local max_inference_tokens = 1024;
 
 # training
-local layer_fix = env.json("LAYER_FIX", "0");
-local grad_acc = env.json("GRAD_ACC", "1");
-local cuda_devices  = env.json("CUDA_DEVICES", "[-1]");
-local patience = env.json("PATIENCE", "null");
+local layer_fix = 0;
+local grad_acc = 1;
+local cuda_devices = std.parseJson(std.extVar("CUDA"));
+local patience = null;
 
 {
     dataset_reader: {

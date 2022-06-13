@@ -5,36 +5,41 @@ Parse sentences by finding &amp; labeling spans
 
 Environment:
 - python >= 3.7
-- pip
+- python-pip
 
 To install the dependencies, execute
 
 ``` shell script
-pip install -r requirements.txt
-pip uninstall -y dataclasses
+pip3 install -r requirements.txt
 ```
 
-Then install SFTP (Span Finding - Transductive Parsing) package:
-
+Optionally, you may install the package via
 ``` shell script
-python setup.py install
+python3 setup.py install
 ```
-
-## Prediction
-
-If you use SpanFinder only for inference, please read [this example](scripts/predict_span.py).
+and import span-finder with `import sftp`.
 
 ## Demo
 
 A demo (combined with Patrick's coref model) is [here](https://nlp.jhu.edu/demos/lome).
 
-## Pre-Trained Models
+## Inference Only
 
-A model pretrained for framenet parsing can be found [here](https://gqin.top/sftp-fn).
+If you use SpanFinder only for inference, we provide a checkpoint that was trained on FrameNet v1.7.
+[This example](scripts/predict_span.py) shows the basic API of SpanFinder.
+Note that the script will incur a checkpoint download everytime, so the best way is to
+download [the checkpoint](https://gqin.top/sftp-fn) to local (~1.7GiB), or better extract it out, 
+and then point the `-m` argument to the archived file or extracted folder.
+
+
+## Training
+
+For training, you may need to read [an overall document](docs/overall.md),
+[the doc for data](docs/data.md), and [the doc for training](docs/training.md).
 
 ## Paper
 
-Please cite this paper for reference:
+Welcome to cite our work if you found it useful:
 
 ```bibtex
 @inproceedings{xia-etal-2021-lome,

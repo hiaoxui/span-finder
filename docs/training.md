@@ -1,5 +1,24 @@
 # Training Span Finder
 
+
+## Training script
+
+Span-finder is built upon AllenNLP framework. To get the training started, set up a few environment variables and run
+
+```bash
+export DATA_PATH=path/to/framenet/folder
+export ONTOLOGY_PATH=path/to/ontology
+export ENCODER=xlm-roberta-large
+export CUDA=-1
+allennlp train -s path/to/checkpoint/folder --include-package sftp config/fn.jsonnet
+```
+
+Please refer to the [data doc](doc/data.md) for data explanations.
+
+Note that the `CUDA` can be -1, which means CPU; can be CUDA number (0, 1, 2, 3...) or a list of CUDA numbers.
+If a list is passed, multi-device training will be triggered.
+But note that AllenNLP can be unstable with multi-device training.
+
 ## Metrics explanation
 
 By default, the following metrics will be used
@@ -19,32 +38,7 @@ to the span model in the config file to turn on this feature. You will see the f
 - trigger: (include trigger-p, trigger-r, trigger-f) It measures how well the system can find the event triggers (or frames in FrameNet). If `check_type` is True, it also checks the event label.
 - role: (include role-p, role-r, role-f) It measures how well the system can find roles. Note if the event/trigger is not found, all its children will be treated as false negative. If `check_type` is True, it also checks the role label.
 
-## Ontology Constraint
-
-In some cases, certain spans can also be attached to specific spans.
-E.g., in SRL tasks, event can only be attached to the VirtualRoot, and arguments can only be attached to the events.
-The constraints of FrameNet is harsher, where each frame have some specific frame elements.
-
-These constraints can be abstracted as a boolean square matrix whose columns and rows are span labels including VIRTUAL_ROOT. 
-Say it's `M`, label2 can be label1's child iff `M[label1, label2]` if True.
-
-You can specify ontology constraint for SpanFinder with the `ontology_path` argument in the SpanModel class.
-The format of this file is simple. Each line is one row of the `M` matrix:
-
-```parent_label child_label_1 child_label_2```
-
-which means child1 and child2 can be attached to the parent. 
-Both `parent_label` and `child_label` are strings, and the space between them should be `\t` not ` `.
-If a parent_label is missing from the file, by default all children be attachable.
-If this file is not provided, all labels can be attached to all labels.
-
-An example of this file can be found at CLSP grid:
-
-```/home/gqin2/data/framenet/ontology.tsv```
-
 ## Typing loss factor
-
-(This section might be updated soon -- Guanghui)
 
 The loss comes from two sources: SpanFinding and SpanTyping modules.
 SpanFinder uses CRF and use probability as loss, but SpanTyping uses cross entropy.

@@ -1,9 +1,11 @@
-from argparse import  ArgumentParser
+from argparse import ArgumentParser
 
 from sftp import SpanPredictor
 
 
 parser = ArgumentParser('predict spans')
+# For local experience, you may download the file via the following url and point the `-m` argument
+# to the downloaded file (you may even extract it out for quickest loading).
 parser.add_argument(
     '-m', help='model path', type=str, default='https://gqin.top/sftp-fn'
 )
@@ -21,6 +23,7 @@ predictor = SpanPredictor.from_path(
 input1 = "Bob saw Alice eating an apple."
 print("Example 1 with input:", input1)
 output1 = predictor.predict_sentence(input1)
+# The `tree` function can print out a human-readable parse tree.
 output1.span.tree(output1.sentence)
 
 # Input sentence might already be tokenized. In this situation, we'll respect the tokenization.
