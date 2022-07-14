@@ -1,7 +1,6 @@
 from typing import *
 
 from allennlp.training.metrics import Metric
-from overrides import overrides
 import numpy as np
 import logging
 
@@ -31,7 +30,6 @@ class SRLMetric(Metric):
             ret.update(metric.get_metric(reset))
         return ret
 
-    @overrides
     def __call__(self, prediction: Span, gold: Span):
         self.with_label_event(prediction, gold)
         self.without_label_event(prediction, gold)

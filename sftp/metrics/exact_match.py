@@ -1,5 +1,4 @@
 from allennlp.training.metrics import Metric
-from overrides import overrides
 
 from .base_f import BaseF
 from ..utils import Span
@@ -14,7 +13,6 @@ class ExactMatch(BaseF):
         else:
             super(ExactMatch, self).__init__('sm')
 
-    @overrides
     def __call__(
             self,
             prediction: Span,

@@ -1,11 +1,9 @@
 import torch
 from allennlp.modules.conditional_random_field import ConditionalRandomField
 from allennlp.nn.util import logsumexp
-from overrides import overrides
 
 
 class SmoothCRF(ConditionalRandomField):
-    @overrides
     def forward(self, inputs: torch.Tensor, tags: torch.Tensor, mask: torch.Tensor = None):
         """
 
