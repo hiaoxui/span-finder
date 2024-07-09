@@ -10,3 +10,5 @@ concrete
 flask
 scipy
 cached-path==1.1.2
+spacy==3.2.6
+charset-normalizer==3.3.2

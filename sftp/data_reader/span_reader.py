@@ -152,9 +152,9 @@ class SpanReader(DatasetReader, ABC):
             bio_seqs.append(apply_bio_smoothing(bio_smooth, bio_tags))
 
         fields['span_boundary'] = ArrayField(
-            np.array(span_boundary), padding_value=0, dtype=np.int
+            np.array(span_boundary), padding_value=0, dtype=np.int64
         )
-        fields['parent_indices'] = ArrayField(np.array(span_parent_indices), 0, np.int)
+        fields['parent_indices'] = ArrayField(np.array(span_parent_indices), 0, np.int64)
         if label_type == 'string':
             fields['span_labels'] = ListField([LabelField(label, 'span_label') for label in span_labels])
         elif label_type == 'list':

@@ -14,12 +14,13 @@ conda create -n spanfinder python=3.8
 conda activate spanfinder
 ```
 
-If you have CUDA devices, run the following line:
+If you have CUDA devices, run the following line
 ```shell
-conda install pytorch==1.11.0 cudatoolkit=11.3 -c pytorch
+conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch
 ```
 
-To install other dependencies, execute
+To install the dependencies, execute
+
 ``` shell
 pip3 install -r requirements.txt
 ```
@@ -27,7 +28,7 @@ pip3 install -r requirements.txt
 
 Optionally, you may install the package via
 ``` shell
-pip install .
+python3 setup.py install
 ```
 and import span-finder with `import sftp`.
 
