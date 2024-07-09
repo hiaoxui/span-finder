@@ -4,7 +4,7 @@ Parse sentences by finding &amp; labeling spans
 ## Installation
 
 Environment:
-- python >= 3.7
+- python 3.8
 - python-pip
 
 To install the dependencies, execute
