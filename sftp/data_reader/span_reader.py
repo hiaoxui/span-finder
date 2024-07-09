@@ -161,7 +161,7 @@ class SpanReader(DatasetReader, ABC):
             fields['span_labels'] = ArrayField(np.array(span_labels))
         else:
             raise NotImplementedError
-        fields['parent_mask'] = ArrayField(np.array(parent_mask), False, np.bool)
+        fields['parent_mask'] = ArrayField(np.array(parent_mask), False, bool)
         fields['bio_seqs'] = ArrayField(np.stack(bio_seqs))
 
         self._sanity_check(
