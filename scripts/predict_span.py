@@ -7,7 +7,7 @@ parser = ArgumentParser('predict spans')
 # For local experience, you may download the file via the following url and point the `-m` argument
 # to the downloaded file (you may even extract it out for quickest loading).
 parser.add_argument(
-    '-m', help='model path', type=str, default='https://gqin.top/sftp-fn'
+    '-m', help='model path', type=str, default='https://public.gqin.me/20210127.fn.tar.gz'
 )
 args = parser.parse_args()
 
