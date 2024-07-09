@@ -50,7 +50,7 @@ class SRLMetric(Metric):
                         unlabeled.append((event.label, arg.boundary))
             return labeled, unlabeled
 
-        def equal_matrix(l1, l2): return np.array([[e1 == e2 for e2 in l2] for e1 in l1], dtype=np.int)
+        def equal_matrix(l1, l2): return np.array([[e1 == e2 for e2 in l2] for e1 in l1], dtype=np.int64)
 
         pred_label, pred_unlabel = extract_tuples(prediction, False)
         gold_label, gold_unlabel = extract_tuples(gold, False)
@@ -120,7 +120,7 @@ class SRLMetric(Metric):
             prediction.remove_child(p)
             gold.remove_child(g)
 
-        sub_matches = np.zeros([len(prediction), len(gold)], np.int)
+        sub_matches = np.zeros([len(prediction), len(gold)], np.int64)
         for p_idx, p in enumerate(prediction):
             for g_idx, g in enumerate(gold):
                 if p.label == g.label:

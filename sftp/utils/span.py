@@ -292,7 +292,7 @@ class Span:
         else:
             return 0
 
-        sub_matches = np.zeros([len(self), len(other)], dtype=np.int)
+        sub_matches = np.zeros([len(self), len(other)], dtype=np.int64)
         for self_idx, my_child in enumerate(self):
             for other_idx, other_child in enumerate(other):
                 sub_matches[self_idx, other_idx] = my_child.match(
